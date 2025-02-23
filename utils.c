@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsonmez <dsonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/09 19:37:44 by dsonmez           #+#    #+#             */
-/*   Updated: 2025/02/23 18:35:35 by dsonmez          ###   ########.fr       */
+/*   Created: 2025/02/23 21:42:46 by dsonmez           #+#    #+#             */
+/*   Updated: 2025/02/23 21:53:13 by dsonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "solong.h"
-#include <fcntl.h>
-#include <stdlib.h>
+#include "./minilibx/mlx.h"
 
-char	**read_map()
+int	ft_exit(t_game *game)
 {
-	int	fd;
-	char *line;
-	char **map;
-	int	i;
-
-	i = 0;
-	fd = open("map.ber", O_RDONLY);
-	map = malloc(sizeof(char)*100);
-	if (map == NULL)
-		return (NULL);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		map[i] = line;
-		i++; 
-	}
-	map[i] = NULL;
-	close(fd);
-    return (map);
+    free(game);
+    mlx_destroy_window(game->mlx, game->window);
+    return (0);
 }

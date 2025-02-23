@@ -6,7 +6,7 @@
 /*   By: dsonmez <dsonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:54:24 by dsonmez           #+#    #+#             */
-/*   Updated: 2025/02/09 21:41:42 by dsonmez          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:05:07 by dsonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,19 @@ int	check_elements(char **map, int *p, int *e, int *c)
         if ((map[i][j] != '1') && (map[i][j] == '0'))
 			ft_printf("Harita geçersiz");
 		if (map[i][j] == 'E')
-			*e++;
+			(*e)++;
 		if (map[i][j] == 'P')
-			*p++;
+			(*p)++;
 		if (map[i][j] == 'C')
-			*c++;
+			(*c)++;
     }
+}
+int	check_file(char *path,char *type)
+{
+	int	len;
+
+	len = ft_strlen(path);
+	return (ft_strncmp(path + len - ft_strlen(type), type, len) == 0);
 }
 
 int check_map(char **map)
